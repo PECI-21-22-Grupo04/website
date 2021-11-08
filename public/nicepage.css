@@ -34340,7 +34340,7 @@ a.u-link.u-text-hover-grey-90:hover {
 
 
 
-        
+
 
         /** common-rules **/
         h1.u-title
@@ -34500,7 +34500,7 @@ a.u-link.u-text-hover-grey-90:hover {
         /*end-media rules*/
         /** publish-rules **/
 
-        
+
 
         /** cms-rules **/
         /*begin-responsive rules*/
@@ -34612,22 +34612,23 @@ a.u-link.u-text-hover-grey-90:hover {
         color: #ffffff;
         }
         /** alt-color-rules **/
-    
+
 
 
 /*end-variables sitestylecss*/
  .u-header {
   background-image: none;
+  max-height: 70px;
 }
 
 .u-header .u-sheet-1 {
-  min-height: 138px;
+  max-height: 70px;
 }
 
 .u-header .u-image-1 {
   width: 75px;
   height: 75px;
-  margin: 41px auto 0 11px;
+  margin: -2px auto 0 0px;
 }
 
 .u-header .u-logo-image-1 {
@@ -34658,7 +34659,7 @@ a.u-link.u-text-hover-grey-90:hover {
   }
 }
 
-
+/*
 
  .u-footer {
   background-image: none;
@@ -34669,7 +34670,7 @@ a.u-link.u-text-hover-grey-90:hover {
 }
 
 .u-footer .u-text-1 {
-  width: 417px;
+  width: 600px;
   margin: 49px auto;
 }
 @media (max-width: 1199px) {
@@ -34695,8 +34696,11 @@ a.u-link.u-text-hover-grey-90:hover {
   .u-footer .u-text-1 {
     width: 340px;
   }
+
+*/
+
 }
 
- /*begin-variables base-font-size*/ 
+ /*begin-variables base-font-size*/
  html { font-size: 16px; }
  /*end-variables base-font-size*/

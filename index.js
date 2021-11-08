@@ -8,6 +8,9 @@ app.use(express.static('public'))
 app.get('/', (req, res) => {
   res.render('home')
 })
+app.get('/contact', (req, res) => {
+  res.render('contact')
+})
 
 app.listen(port, () => {
   console.log(`app listening at http://localhost:${port}`)
