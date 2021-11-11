@@ -11,6 +11,9 @@ app.get('/', (req, res) => {
 app.get('/about', (req, res) => {
   res.render('contact')
 })
+app.get('/info', (req, res) => {
+  res.render('info')
+})
 
 app.listen(port, () => {
   console.log(`app listening at http://localhost:${port}`)
