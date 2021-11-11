@@ -1,11 +1,8 @@
 .u-section-1 {
-  background-image: linear-gradient(
-      0deg,
-      rgba(41, 46, 51, 0.1),
-      rgba(41, 46, 51, 0.1)
-    ),
-    url("images/gb46174c3d555f9102fdc24bfb417fbdbb2b5b0fa68df4e831980dea1257fa941c9392db214294f15046da36f34084fdf1db18a1a589dc863cdfc1d1d884e3bfa_1280.jpg");
-  background-position: 50% 50%;
+  background-image: linear-gradient(to top, rgba(48, 3, 252, 0.4), rgba(153, 7, 250, 0.4)),
+    url("images/nelson-ndongala-N_5HGZdo4QU-unsplash.jpg");
+    background-position: 50% 25%
+
 }
 
 .u-section-1 .u-sheet-1 {
