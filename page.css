@@ -4,7 +4,7 @@
  * Copyright 2014-2021 Froala Labs
  */
 
-.fr-clearfix::after {
+ .fr-clearfix::after {
   clear: both;
   display: block;
   content: "";
@@ -37055,7 +37055,7 @@ a.u-link.u-text-hover-grey-90:hover {
 }
 
 .u-header .u-image-1 {
-  width: 112px;
+  width: 62px;
   height: 62px;
   margin: 8px auto 0 0;
 }
@@ -37098,6 +37098,7 @@ a.u-link.u-text-hover-grey-90:hover {
   }
 
   .u-header .u-image-1 {
+    width: 62px;
     height: 57px;
     margin-top: 15px;
   }
