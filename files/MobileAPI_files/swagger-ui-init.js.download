@@ -1,0 +1,511 @@
+
+window.onload = function() {
+  // Build a system
+  var url = window.location.search.match(/url=([^&]+)/);
+  if (url && url.length > 1) {
+    url = decodeURIComponent(url[1]);
+  } else {
+    url = window.location.origin;
+  }
+  var options = {
+  "swaggerDoc": {
+    "info": {
+      "title": "PECI Project Mobile API",
+      "version": "1.0.0",
+      "supportedSubmitMethods": []
+    },
+    "swagger": "2.0",
+    "paths": {
+      "/selectClient": {
+        "post": {
+          "description": "Selects all of a certain Client's information",
+          "parameters": [
+            {
+              "name": "Email",
+              "description": "Client's Email",
+              "in": "form",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "0": {
+              "description": "Return client data"
+            },
+            "1": {
+              "description": "Database error"
+            },
+            "2": {
+              "description": "Client does not exist or encrypt key is incorrect"
+            }
+          }
+        }
+      },
+      "/createClient": {
+        "post": {
+          "description": "Creates a Client",
+          "parameters": null,
+          "responses": {
+            "0": {
+              "description": "Client was successfully created"
+            },
+            "1": {
+              "description": "Client with the provided email already exists"
+            },
+            "2": {
+              "description": "Database error"
+            }
+          }
+        }
+      },
+      "/deleteClient": {
+        "post": {
+          "description": "Deletes a Client",
+          "parameters": null,
+          "responses": {
+            "0": {
+              "description": "Client was successfully deleted"
+            },
+            "1": {
+              "description": "Database error"
+            },
+            "2": {
+              "description": "Client does not exist or encrypt key is incorrect"
+            }
+          }
+        }
+      },
+      "/addClientInfo": {
+        "post": {
+          "description": "Adds Information to an existing Client",
+          "parameters": null,
+          "responses": {
+            "0": {
+              "description": "Information was successfully added"
+            },
+            "1": {
+              "description": "Client does not exist or encrypt key is incorrect"
+            },
+            "2": {
+              "description": "Database error"
+            }
+          }
+        }
+      },
+      "/updateClient": {
+        "post": {
+          "description": "Updates an existing Client's information",
+          "parameters": null,
+          "responses": {
+            "0": {
+              "description": "Client was successfully updated"
+            },
+            "1": {
+              "description": "Database error"
+            },
+            "2": {
+              "description": "Client does not exist or encrypt key is incorrect"
+            }
+          }
+        }
+      },
+      "/selectClientInfo": {
+        "post": {
+          "description": "Selects all of a certain Client's physical data",
+          "parameters": null,
+          "responses": {
+            "0": {
+              "description": "Return requested data"
+            },
+            "1": {
+              "description": "Database error"
+            },
+            "2": {
+              "description": "Client does not exist or encrypt key is incorrect"
+            }
+          }
+        }
+      },
+      "/finalizeClientPayment": {
+        "post": {
+          "description": "Saves Client's latest payment's information",
+          "parameters": null,
+          "responses": {
+            "0": {
+              "description": "Payment was successfully saved"
+            },
+            "1": {
+              "description": "Database error"
+            },
+            "2": {
+              "description": "Client does not exist or encrypt key is incorrect"
+            }
+          }
+        }
+      },
+      "/selectLatestClientPayment": {
+        "post": {
+          "description": "Selects the last payment the Client made",
+          "parameters": null,
+          "responses": {
+            "0": {
+              "description": "Client has made payments, return information about the latest one"
+            },
+            "1": {
+              "description": "Database error"
+            },
+            "2": {
+              "description": "Client hasn't made any payments"
+            }
+          }
+        }
+      },
+      "/associateInstructor": {
+        "post": {
+          "description": "Associates a Client to a certain Instructor",
+          "parameters": null,
+          "responses": {
+            "0": {
+              "description": "Client has been successfully associated to an instructor"
+            },
+            "1": {
+              "description": "Database error"
+            },
+            "2": {
+              "description": "Client/Instructor does not exist or encrypt key is incorrect"
+            }
+          }
+        }
+      },
+      "/isClientAssociated": {
+        "post": {
+          "description": "Returns Client's current association information",
+          "parameters": null,
+          "responses": {
+            "0": {
+              "description": "Client is/has been associated, return information about latest one"
+            },
+            "1": {
+              "description": "Database error"
+            },
+            "2": {
+              "description": "Client has never been associated"
+            }
+          }
+        }
+      },
+      "/selectAssociatedInstructor": {
+        "post": {
+          "description": "Selects the Instructor that is currently associated with a certain Client",
+          "parameters": null,
+          "responses": {
+            "0": {
+              "description": "Client is associated, return information about the instructor"
+            },
+            "1": {
+              "description": "Database error"
+            },
+            "2": {
+              "description": "Client is not associated"
+            }
+          }
+        }
+      },
+      "/clientReviewInstructor": {
+        "post": {
+          "description": "Client makes a review of his associated Instructor",
+          "parameters": null,
+          "responses": {
+            "0": {
+              "description": "Review was successfully saved"
+            },
+            "1": {
+              "description": "Database error"
+            },
+            "2": {
+              "description": "Client/Instructor does not exist or encrypt key is incorrect"
+            }
+          }
+        }
+      },
+      "/selectClientPaymentHistory": {
+        "post": {
+          "description": "Selects all the payments the Client has made",
+          "parameters": null,
+          "responses": {
+            "0": {
+              "description": "Return client payment history"
+            },
+            "1": {
+              "description": "Database error"
+            },
+            "2": {
+              "description": "Client does not exist or encrypt key is incorrect"
+            }
+          }
+        }
+      },
+      "/selectClientInstructorHistory": {
+        "post": {
+          "description": "Selects all the Instructors that have been associated with a certain Client",
+          "parameters": null,
+          "responses": {
+            "0": {
+              "description": "Return client instructor history"
+            },
+            "1": {
+              "description": "Database error"
+            },
+            "2": {
+              "description": "Client does not exist or encrypt key is incorrect"
+            }
+          }
+        }
+      },
+      "/addClientRewards": {
+        "post": {
+          "description": "Gives a Reward to a certain Client",
+          "parameters": null,
+          "responses": {
+            "0": {
+              "description": "Reward has been given to client"
+            },
+            "1": {
+              "description": "Database error"
+            },
+            "2": {
+              "description": "Client does not exist or encrypt key is incorrect"
+            }
+          }
+        }
+      },
+      "/selectClientRewards": {
+        "post": {
+          "description": "Selects Client's Rewards",
+          "parameters": null,
+          "responses": {
+            "0": {
+              "description": "Return client rewards"
+            },
+            "1": {
+              "description": "Database error"
+            },
+            "2": {
+              "description": "Client has no rewards"
+            }
+          }
+        }
+      },
+      "/selectClientPrograms": {
+        "post": {
+          "description": "Selects Client's Programs",
+          "parameters": null,
+          "responses": {
+            "0": {
+              "description": "Return clients private programs"
+            },
+            "1": {
+              "description": "Database error"
+            },
+            "2": {
+              "description": "Client has no private program associated"
+            }
+          }
+        }
+      },
+      "/selectAvailableInstructors": {
+        "post": {
+          "description": "Selects all the available Instructors",
+          "parameters": null,
+          "responses": {
+            "0": {
+              "description": "Return available instructors"
+            },
+            "1": {
+              "description": "Database error"
+            },
+            "2": {
+              "description": "There are no available instructors"
+            }
+          }
+        }
+      },
+      "/selectDefaultExercises": {
+        "post": {
+          "description": "Selects Default Exercises",
+          "parameters": null,
+          "responses": {
+            "0": {
+              "description": "Return free exercises"
+            },
+            "1": {
+              "description": "Database error"
+            },
+            "2": {
+              "description": "There are no available free exercises"
+            }
+          }
+        }
+      },
+      "/selectDefaultPrograms": {
+        "post": {
+          "description": "Selects Default Programs",
+          "parameters": null,
+          "responses": {
+            "0": {
+              "description": "Return free programs"
+            },
+            "1": {
+              "description": "Database error"
+            },
+            "2": {
+              "description": "There are no available free programs"
+            }
+          }
+        }
+      },
+      "/selectAllProgramExercises": {
+        "post": {
+          "description": "Selects all Exercises that are currently associated to a Program",
+          "parameters": null,
+          "responses": {
+            "0": {
+              "description": "Return program-exercise association"
+            },
+            "1": {
+              "description": "Database error"
+            },
+            "2": {
+              "description": "There are no exercises associated to programs"
+            }
+          }
+        }
+      },
+      "/finishWorkout": {
+        "post": {
+          "description": "Saves Client's latest workout's information",
+          "parameters": null,
+          "responses": {
+            "0": {
+              "description": "Information about workout was saved"
+            },
+            "1": {
+              "description": "Database error"
+            },
+            "2": {
+              "description": "Client does not exist or encrypt key is incorrect"
+            }
+          }
+        }
+      },
+      "/removeInstructorAssociation": {
+        "post": {
+          "description": "Removes a certain Exercise from a certain Plan",
+          "parameters": null,
+          "responses": {
+            "0": {
+              "description": "Association between client-instructor was removed"
+            },
+            "1": {
+              "description": "Database error"
+            },
+            "2": {
+              "description": "Client/Instructor does not exist or encrypt key is incorrect"
+            }
+          }
+        }
+      },
+      "/selectClientWorkoutHistory": {
+        "post": {
+          "description": "Selects Client's workout history",
+          "parameters": null,
+          "responses": {
+            "0": {
+              "description": "Return client workout history"
+            },
+            "1": {
+              "description": "Database error"
+            },
+            "2": {
+              "description": "Client does not have any workouts done"
+            }
+          }
+        }
+      },
+      "/updateFirebaseID": {
+        "post": {
+          "description": "Updates Client's Firebase ID",
+          "parameters": null,
+          "responses": {
+            "0": {
+              "description": "Clients firebaseID has been updated"
+            },
+            "1": {
+              "description": "Database error"
+            },
+            "2": {
+              "description": "Client does not exist or encrypt key is incorrect"
+            }
+          }
+        }
+      },
+      "/addUserImage": {
+        "post": {
+          "description": "Adds a profile picture to the User",
+          "parameters": null,
+          "responses": {
+            "0": {
+              "description": "Clients image path has been saved"
+            },
+            "1": {
+              "description": "Database error"
+            },
+            "2": {
+              "description": "Client does not exist or encrypt key is incorrect"
+            }
+          }
+        }
+      }
+    },
+    "definitions": {},
+    "responses": {},
+    "parameters": {},
+    "securityDefinitions": {},
+    "tags": []
+  },
+  "customOptions": {}
+};
+  url = options.swaggerUrl || url
+  var urls = options.swaggerUrls
+  var customOptions = options.customOptions
+  var spec1 = options.swaggerDoc
+  var swaggerOptions = {
+    spec: spec1,
+    url: url,
+    urls: urls,
+    dom_id: '#swagger-ui',
+    deepLinking: true,
+    presets: [
+      SwaggerUIBundle.presets.apis,
+      SwaggerUIStandalonePreset
+    ],
+    plugins: [
+      SwaggerUIBundle.plugins.DownloadUrl
+    ],
+    layout: "StandaloneLayout"
+  }
+  for (var attrname in customOptions) {
+    swaggerOptions[attrname] = customOptions[attrname];
+  }
+  var ui = SwaggerUIBundle(swaggerOptions)
+
+  if (customOptions.oauth) {
+    ui.initOAuth(customOptions.oauth)
+  }
+
+  if (customOptions.authAction) {
+    ui.authActions.authorize(customOptions.authAction)
+  }
+
+  window.ui = ui
+}
